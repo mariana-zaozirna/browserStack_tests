@@ -10,8 +10,10 @@ jobs:
           node-version: 'latest'
 
       - name: Install dependencies
-        run: npm install
-
+        run: |
+            npm install
+            echo dir is $(pwd)
+            echo content is $(ls)
       - name: Run Tests
         run: npm run wdio:pixel
         env:
