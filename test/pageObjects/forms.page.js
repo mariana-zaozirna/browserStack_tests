@@ -20,7 +20,7 @@ const cancelButton = 'id=android:id/button2';
 const okButton = 'id=android:id/button1';
 
 class FormsPage extends Page {
-    
+
   async getInputTextResult() {
     return await super.getElement(inputTextResult);
   }

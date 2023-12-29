@@ -17,6 +17,7 @@
     "allure:report": "npx allure generate reports/allure-results/ --clean -o reports/allure-reports/"
   },
   "dependencies": {
+    "allure-commandline": "^2.25.0",
     "dotenv": "^16.3.1",
     "webdriverio": "^8.27.0"
   }
