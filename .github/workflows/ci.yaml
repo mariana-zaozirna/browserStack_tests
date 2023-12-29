@@ -1,0 +1,32 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'latest'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm run wdio:pixel
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          BROWSERSTACK_APP_ID: ${{ secrets.BROWSERSTACK_APP_ID }}
+
+      - name: Generate Allure report
+        if: always()
+        run: npm run allure:report
+
+      - name: Deploy Report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: reports/allure-reports/
