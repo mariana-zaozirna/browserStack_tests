@@ -8,12 +8,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 'latest'
+      - name: Checkout server
+        uses: actions/checkout@v4     
 
       - name: Install dependencies
         run: |
             echo dir is $(pwd)
             echo content is $(ls)
             npm install
+
       - name: Run Tests
         run: npm run wdio:pixel
         env:
