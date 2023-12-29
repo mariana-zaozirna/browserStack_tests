@@ -94,7 +94,7 @@ class FormsPage extends Page {
     const allTexts = await Promise.all(
       formsTextElements.map((element) => element.getText())
     );
-    return allTexts;
+    return await allTexts;
   }
 
   async fillTextInput() {
